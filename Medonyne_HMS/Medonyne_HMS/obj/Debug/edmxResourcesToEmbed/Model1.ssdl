@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admindb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="ExtraInformation" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="appointmentdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="DoctorId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="cartdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Items" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Price" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="doctordb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DoctorName" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Degree" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Catagory" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Specialist" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="AvailabilityStartTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="AvailabilityEndTime" Type="time" Precision="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="feedbackdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Feedback" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="medicinedb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="QuantityInOnePacket" Type="int" />
+    <Property Name="Price" Type="float" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="orderdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Items" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Amount" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeliveryAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="patientdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="RoomNo" Type="int" Nullable="false" />
+    <Property Name="BloodGroup" Type="nvarchar" MaxLength="10" />
+    <Property Name="Email" Type="nvarchar" MaxLength="30" />
+    <Property Name="Desies" Type="nvarchar" MaxLength="30" />
+    <Property Name="AdmitDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="roomdb">
+    <Key>
+      <PropertyRef Name="RoomNo" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomNo" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Max" Type="int" Nullable="false" />
+    <Property Name="Occupied" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="userdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="BloodGroup" Type="nvarchar" MaxLength="10" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DOB" Type="date" Nullable="false" />
+    <Property Name="ContactNumber" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="30" />
+    <Property Name="ExtraInformation" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <Association Name="FK_appointmentdb_ToTable">
+    <End Role="userdb" Type="Self.userdb" Multiplicity="1" />
+    <End Role="appointmentdb" Type="Self.appointmentdb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userdb">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appointmentdb">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_appointmentdb_ToTable_1">
+    <End Role="doctordb" Type="Self.doctordb" Multiplicity="1" />
+    <End Role="appointmentdb" Type="Self.appointmentdb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctordb">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appointmentdb">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_patientdb_ToTable">
+    <End Role="roomdb" Type="Self.roomdb" Multiplicity="1" />
+    <End Role="patientdb" Type="Self.patientdb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roomdb">
+        <PropertyRef Name="RoomNo" />
+      </Principal>
+      <Dependent Role="patientdb">
+        <PropertyRef Name="RoomNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database1ModelStoreContainer">
+    <EntitySet Name="admindb" EntityType="Self.admindb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="appointmentdb" EntityType="Self.appointmentdb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cartdb" EntityType="Self.cartdb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doctordb" EntityType="Self.doctordb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="feedbackdb" EntityType="Self.feedbackdb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="medicinedb" EntityType="Self.medicinedb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orderdb" EntityType="Self.orderdb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="patientdb" EntityType="Self.patientdb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="roomdb" EntityType="Self.roomdb" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="userdb" EntityType="Self.userdb" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_appointmentdb_ToTable" Association="Self.FK_appointmentdb_ToTable">
+      <End Role="userdb" EntitySet="userdb" />
+      <End Role="appointmentdb" EntitySet="appointmentdb" />
+    </AssociationSet>
+    <AssociationSet Name="FK_appointmentdb_ToTable_1" Association="Self.FK_appointmentdb_ToTable_1">
+      <End Role="doctordb" EntitySet="doctordb" />
+      <End Role="appointmentdb" EntitySet="appointmentdb" />
+    </AssociationSet>
+    <AssociationSet Name="FK_patientdb_ToTable" Association="Self.FK_patientdb_ToTable">
+      <End Role="roomdb" EntitySet="roomdb" />
+      <End Role="patientdb" EntitySet="patientdb" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

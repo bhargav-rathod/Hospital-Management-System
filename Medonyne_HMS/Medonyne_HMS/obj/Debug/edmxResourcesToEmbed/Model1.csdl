@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admindb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ExtraInformation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="appointmentdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="DoctorId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="userdb" Relationship="Self.FK_appointmentdb_ToTable" FromRole="appointmentdb" ToRole="userdb" />
+    <NavigationProperty Name="doctordb" Relationship="Self.FK_appointmentdb_ToTable_1" FromRole="appointmentdb" ToRole="doctordb" />
+  </EntityType>
+  <EntityType Name="cartdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Items" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="doctordb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DoctorName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Degree" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Catagory" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Specialist" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Age" Type="Int32" Nullable="false" />
+    <Property Name="ContactNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AvailabilityStartTime" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="AvailabilityEndTime" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="appointmentdbs" Relationship="Self.FK_appointmentdb_ToTable_1" FromRole="doctordb" ToRole="appointmentdb" />
+  </EntityType>
+  <EntityType Name="feedbackdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Feedback" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="medicinedb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="QuantityInOnePacket" Type="Int32" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="orderdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Items" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Amount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DeliveryAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmailId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="patientdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoomNo" Type="Int32" Nullable="false" />
+    <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Desies" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="AdmitDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="roomdb" Relationship="Self.FK_patientdb_ToTable" FromRole="patientdb" ToRole="roomdb" />
+  </EntityType>
+  <EntityType Name="roomdb">
+    <Key>
+      <PropertyRef Name="RoomNo" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoomNo" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Max" Type="Int32" Nullable="false" />
+    <Property Name="Occupied" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="patientdbs" Relationship="Self.FK_patientdb_ToTable" FromRole="roomdb" ToRole="patientdb" />
+  </EntityType>
+  <EntityType Name="userdb">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ContactNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ExtraInformation" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="appointmentdbs" Relationship="Self.FK_appointmentdb_ToTable" FromRole="userdb" ToRole="appointmentdb" />
+  </EntityType>
+  <Association Name="FK_appointmentdb_ToTable">
+    <End Role="userdb" Type="Self.userdb" Multiplicity="1" />
+    <End Role="appointmentdb" Type="Self.appointmentdb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userdb">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appointmentdb">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_appointmentdb_ToTable_1">
+    <End Role="doctordb" Type="Self.doctordb" Multiplicity="1" />
+    <End Role="appointmentdb" Type="Self.appointmentdb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="doctordb">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="appointmentdb">
+        <PropertyRef Name="DoctorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_patientdb_ToTable">
+    <End Role="roomdb" Type="Self.roomdb" Multiplicity="1" />
+    <End Role="patientdb" Type="Self.patientdb" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="roomdb">
+        <PropertyRef Name="RoomNo" />
+      </Principal>
+      <Dependent Role="patientdb">
+        <PropertyRef Name="RoomNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Database1Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admindbs" EntityType="Self.admindb" />
+    <EntitySet Name="appointmentdbs" EntityType="Self.appointmentdb" />
+    <EntitySet Name="cartdbs" EntityType="Self.cartdb" />
+    <EntitySet Name="doctordbs" EntityType="Self.doctordb" />
+    <EntitySet Name="feedbackdbs" EntityType="Self.feedbackdb" />
+    <EntitySet Name="medicinedbs" EntityType="Self.medicinedb" />
+    <EntitySet Name="orderdbs" EntityType="Self.orderdb" />
+    <EntitySet Name="patientdbs" EntityType="Self.patientdb" />
+    <EntitySet Name="roomdbs" EntityType="Self.roomdb" />
+    <EntitySet Name="userdbs" EntityType="Self.userdb" />
+    <AssociationSet Name="FK_appointmentdb_ToTable" Association="Self.FK_appointmentdb_ToTable">
+      <End Role="userdb" EntitySet="userdbs" />
+      <End Role="appointmentdb" EntitySet="appointmentdbs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_appointmentdb_ToTable_1" Association="Self.FK_appointmentdb_ToTable_1">
+      <End Role="doctordb" EntitySet="doctordbs" />
+      <End Role="appointmentdb" EntitySet="appointmentdbs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_patientdb_ToTable" Association="Self.FK_patientdb_ToTable">
+      <End Role="roomdb" EntitySet="roomdbs" />
+      <End Role="patientdb" EntitySet="patientdbs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
